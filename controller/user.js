@@ -44,6 +44,10 @@ async function main() {
     auth: {
       user: process.env.EMAIL, // generated ethereal user
       pass: process.env.PASSWORD // generated ethereal password
+    },
+    tls: {
+      // do not fail on invalid certs
+      rejectUnauthorized: false
     }
   });
 
