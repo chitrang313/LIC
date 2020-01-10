@@ -12,18 +12,6 @@ const userRouter = require("./routes/user");
 
 app.use("/", userRouter);
 
-$.ajax({
-  url: "https://lic-hitesh.herokuapp.com/",
-  type: "POST",
-  headers: { Accept: "application/json;" },
-  data: {
-    subject: "subject",
-    message: "some body text"
-  }
-}).done(function(res) {
-  console.log(res); // it shows your email sent message.
-});
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Listening On Port: ${PORT}`);

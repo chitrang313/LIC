@@ -1,8 +1,5 @@
 require("dotenv").config();
 
-const accountSid = "ACc6b1b5b930548c2fe01f9911c9199ef4";
-const authToken = "7a1d0a27d9d6f62b4ac9e65bc599bc9f";
-const client = require("twilio")(accountSid, authToken);
 let message;
 const path = require("path");
 const appDir = path.dirname(require.main.filename);
@@ -25,18 +22,6 @@ module.exports.postUserForm = (req, res, next) => {
   return res.redirect("/");
 };
 
-function sendMessage() {
-  client.messages
-    .create({
-      from: "whatsapp:+14155238886",
-      to: `whatsapp:+918007796351`,
-      body: message
-    })
-    .then(msg => {
-      console.log(msg);
-    });
-}
-
 // async..await is not allowed in global scope, must use a wrapper
 async function main() {
   let transporter = nodemailer.createTransport({
@@ -44,10 +29,6 @@ async function main() {
     auth: {
       user: process.env.EMAIL, // generated ethereal user
       pass: process.env.PASSWORD // generated ethereal password
-    },
-    tls: {
-      // do not fail on invalid certs
-      rejectUnauthorized: false
     }
   });
 
