@@ -12,6 +12,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "googleapis": "^46.0.0",
     "mongood": "^0.0.5",
     "mongoose": "^5.7.12",
     "nodemailer": "^6.4.2",
