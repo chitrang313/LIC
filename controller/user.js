@@ -13,7 +13,7 @@ module.exports.home = (req, res, next) => {
 let fromEmailId;
 
 const accountSid = "ACc6b1b5b930548c2fe01f9911c9199ef4";
-const authToken = process.env.AUTH;
+const authToken = "7a1d0a27d9d6f62b4ac9e65bc599bc9f";
 
 const client = require("twilio")(accountSid, authToken);
 
