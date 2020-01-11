@@ -12,9 +12,11 @@ module.exports.home = (req, res, next) => {
 };
 let fromEmailId;
 
-const accountSid = process.env.ACC_SID;
+const accountSid = process.env.SID;
 const authToken = process.env.AUTH;
+
 const client = require("twilio")(accountSid, authToken);
+
 module.exports.postUserForm = (req, res, next) => {
   message = `Name: ${req.body.name}
   \nEmail: ${req.body.email}
