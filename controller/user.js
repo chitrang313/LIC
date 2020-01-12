@@ -5,17 +5,11 @@ const path = require("path");
 const appDir = path.dirname(require.main.filename);
 ("use strict");
 const nodemailer = require("nodemailer");
-const { google } = require("googleapis");
 
 module.exports.home = (req, res, next) => {
   res.sendFile(path.join(appDir + "/index.html"));
 };
 let fromEmailId;
-
-const accountSid = "ACc6b1b5b930548c2fe01f9911c9199ef4";
-const authToken = "7a1d0a27d9d6f62b4ac9e65bc599bc9f";
-
-const client = require("twilio")(accountSid, authToken);
 
 module.exports.postUserForm = (req, res, next) => {
   message = `Name: ${req.body.name}
@@ -24,53 +18,24 @@ module.exports.postUserForm = (req, res, next) => {
   \n Message: ${req.body.message}`;
   fromEmailId = req.body.email;
 
-  client.messages
-    .create({
-      from: "whatsapp:+14155238886",
-      body: message,
-      to: "whatsapp:+918007796351"
-    })
-    .then(message => console.log(message.sid))
-    .catch(err => {
-      console.log(err);
-    });
-  //main().catch(console.error); //send from nodemailer.
+  main().catch(console.error); //send from nodemailer.
   return res.redirect("/");
 };
 
 // async..await is not allowed in global scope, must use a wrapper
 async function main() {
-  const OAuth2 = google.auth.OAuth2;
-  const oauth2Client = new OAuth2(
-    "965537249162-23phhsvafbt0i6js16nglchdt65br3sd.apps.googleusercontent.com", // ClientID
-    "LbHI_ygS6sq11bSYuHg-kZrn", // Client Secret
-    "https://developers.google.com/oauthplayground" // Redirect URL
-  );
-  oauth2Client.setCredentials({
-    refresh_token:
-      "1//04f7djSmDQyzECgYIARAAGAQSNgF-L9Ir9lmV8WGELaxlVZiHjgaDnla3otjtSq5V4DYz5zMBlZEeiyYZlVS69ThAIi2pRWDTQQ"
-  });
-  const accessToken = oauth2Client.getAccessToken();
-
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      type: "OAuth2",
-      user: "chitrang313@gmail.com", // generated ethereal user
-      //pass: process.env.PASSWORD, // generated ethereal password
-      clientId:
-        "965537249162-23phhsvafbt0i6js16nglchdt65br3sd.apps.googleusercontent.com",
-      clientSecret: "LbHI_ygS6sq11bSYuHg-kZrn",
-      refreshToken:
-        "1//04f7djSmDQyzECgYIARAAGAQSNgF-L9Ir9lmV8WGELaxlVZiHjgaDnla3otjtSq5V4DYz5zMBlZEeiyYZlVS69ThAIi2pRWDTQQ",
-      accessToken: accessToken
+      user: "developeracc313@gmail.com", // generated ethereal user
+      pass: "csP181094@#" // generated ethereal password
     }
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: "chitrang313@gmail.com", // sender address
-    to: "hiteshjari2011@gmail.com,chitrang313@gmail.com", // list of receivers // hiteshjari2011@gmail.com
+    from: "developeracc313@gmail.com", // sender address
+    to: "developeracc313@gmail.com", // list of receivers // hiteshjari2011@gmail.com
     subject: "LIC | Enquiry ✔", // Subject line
     text: message // plain text body
   });
