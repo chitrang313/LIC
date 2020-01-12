@@ -27,15 +27,15 @@ async function main() {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "developeracc313@gmail.com", // generated ethereal user
-      pass: "csP181094@#" // generated ethereal password
+      user: process.env.EMAIL, // generated ethereal user
+      pass: process.env.PASS // generated ethereal password
     }
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: "developeracc313@gmail.com", // sender address
-    to: "developeracc313@gmail.com", // list of receivers // hiteshjari2011@gmail.com
+    from: process.env.EMAIL, // sender address
+    to: `hiteshjari2011@gmail.com,${process.env.EMAIL}`, // list of receivers // hiteshjari2011@gmail.com
     subject: "LIC | Enquiry ✔", // Subject line
     text: message // plain text body
   });
